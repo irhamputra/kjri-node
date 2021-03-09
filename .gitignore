@@ -1,0 +1,6 @@
+.vercel
+node_modules
+api
+.idea
+yarn.lock
+.env
