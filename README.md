@@ -25,6 +25,8 @@ or with NPM
 npm run dev
 ```
 
+Application will run on port 8080
+
 ## Deployment with Vercel
 
 1. Make sure have a Vercel account
