@@ -1,6 +1,13 @@
 import authInstance from '../services/Auth';
+import { auth } from '../utils/firebase';
 
 class Auth {
+  /**
+   * @param res: Express Response
+   * @param password: string
+   * @param email: string
+   * @return {Promise<void>}
+   */
   async signIn(res, { password, email } = { email: '', password: '' }) {
     try {
       const { data } = await authInstance.post('/accounts:signInWithPassword', {
@@ -17,8 +24,24 @@ class Auth {
     }
   }
 
-  async signOut(res, token){
-      // TODO: implement sign out method
+  /**
+   * @param res: Express Response
+   * @param token
+   * @return {Promise<void>}
+   */
+  async signOut(res, token) {
+    try {
+      const verifyToken = await auth.verifyIdToken(token, true);
+      await auth.revokeRefreshTokens(verifyToken.uid);
+
+      await verifyToken;
+
+      res.status(200).json({ message: 'Sign Out berhasil' });
+      res.end();
+    } catch (e) {
+      res.status(500).json({ message: 'Tidak ada akun yang terautentifikasi' });
+      res.end();
+    }
   }
 }
 
