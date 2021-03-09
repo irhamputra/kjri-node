@@ -13,7 +13,21 @@ or with NPM
 npm i
 ```
 
-3. Start the app
+3. Create Firebase Service Account
+
+   - Go to Project Settings (⚙️ Icon)
+   - Go to Service Account tab
+   - Choose Node.js
+   - Generate New Private key
+   - add serviceAccount.js file in utils folder
+
+   ```js
+   export const serviceAccount = {
+     // copy-paste Service Account Key here
+   };
+   ```
+
+4. Start the app
 
 ```shell
 yarn dev
